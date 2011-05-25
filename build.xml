@@ -112,7 +112,7 @@
       
 <!-- PHPUNIT  -->
     <target name="phpunit">
-        <exec executable="phpunit" failonerror="true" dir="${basedir}/tests">
+        <exec executable="phpunit" failonerror="false" dir="${basedir}/tests">
             <arg line="--process-isolation
                        --log-junit ${builddir}/logs/junit.xml
                        --coverage-clover ${builddir}/logs/coverage.xml
