@@ -60,7 +60,7 @@
 
 <!-- PHP-DOCUMENTOR //-i paths-to-ignore1,paths-to-ignore2-->
     <target name="php-documentor" depends="init">
-        <exec executable="phpdoc" dir="${basedir}/source">
+        <exec executable="phpdoc" dir="${basedir}">
             <arg line="-ue on 
                        --target ${builddir}/api 
                        --templatebase /usr/share/php/data/phpUnderControl/data/phpdoc/ 
