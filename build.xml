@@ -74,7 +74,7 @@
     <target name="php-codesniffer" depends="init">
         <exec executable="phpcs">
             <arg line="--report=checkstyle 
-                       --standard=Zend 
+                       --standard=PEAR 
                        --report-file=${builddir}/logs/checkstyle.xml
                        ${basedir}/src"/>
         </exec>
