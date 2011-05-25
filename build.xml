@@ -10,7 +10,7 @@
   5. 'phpunit' Execute unit tests, generate metrics, coverage etc. 
   -->
 
-<project name="php-listr" default="build" basedir=".">
+<project name="ListFramework" default="build" basedir=".">
     <property file="build.properties" />
     <property name="builddir" value="${basedir}/../build" />
 
