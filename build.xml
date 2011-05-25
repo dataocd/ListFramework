@@ -28,6 +28,7 @@
         <mkdir dir="${builddir}/graph" />
         <mkdir dir="${builddir}/logs" />
         <mkdir dir="${builddir}/phpcb" />
+        <buildnumber file="${basedir}/build.number"/>
         <!--
         <exec executable="git">
             <arg line="clone git://github.com/JamesWPhillips/lists.git source" />
