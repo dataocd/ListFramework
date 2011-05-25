@@ -17,7 +17,7 @@
 /**
  * @namespace
  */
-namespace List;
+namespace Listr;
 
 /**
  * @uses       Exception

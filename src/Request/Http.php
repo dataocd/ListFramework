@@ -13,12 +13,10 @@
  * @link      http://www.dataocd.com/
  */
 
- */
-
 /**
  * @namespace
  */
-namespace List\Request;
+namespace Listr\Request;
 
 /**
  * @category  Requests
@@ -65,5 +63,5 @@ namespace List\Request;
             default:
                 return null;
         }
-
+    }
 }

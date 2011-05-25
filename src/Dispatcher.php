@@ -14,17 +14,8 @@
  * @link      http://www.dataocd.com/
  */
 
-namespace List\Controller;
+namespace Listr;
 
-/**
- * Defines autoload strategy for classes
- */
-function list_autoload($class) {
-  $classfile = '/var/www/lists/classes/'.strtr($class, '_', '/').'.php';
-  if (file_exists($classfile)) {
-    include($classfile);
-  }
+class Dispatcher {
+   //This class should create the package->controller and call the execute function
 }
-spl_autoload_register('list_autoload');
-
-$a = new Controller();

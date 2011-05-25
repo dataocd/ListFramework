@@ -13,7 +13,7 @@
  * @link      http://www.dataocd.com/
  */
 
-namespace List
+namespace Listr;
 /**
  * @category  Core
  * @package   Loader
@@ -78,7 +78,7 @@ class FrontController {
     }
     
     public function getRouter() {
-        return $this->router
+        return $this->router;
     }
     
     public function setDispatcher($dispatcher) {

@@ -1,5 +1,5 @@
 <?php
-namespace List\Router;
+namespace Listr\Router;
 
 /**
   * Processes the information in the $Request to determine what package

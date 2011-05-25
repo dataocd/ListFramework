@@ -16,12 +16,10 @@
  * @link      http://www.dataocd.com/
  */
 
- */
-
 /**
  * @namespace
  */
-namespace List;
+namespace Listr;
 
 /**
  * Used to get and verify the current version of the List framework.

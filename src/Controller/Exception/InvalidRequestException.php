@@ -14,7 +14,8 @@
  * @link      http://www.dataocd.com/
  */
  
- namespace List\Controller\Exception
+ namespace Listr\Controller\Exception;
  
- Class InvalidRequestException extends \List\Exception {
+ Class InvalidRequestException 
+        extends \Listr\Exception {
  }

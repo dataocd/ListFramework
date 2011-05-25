@@ -1,5 +1,6 @@
 <?php
-namespace List;
+
+namespace Listr;
 
 class AutoLoader {
     const NAMESPACE_SEPARATOR     = '\\';
@@ -7,11 +8,11 @@ class AutoLoader {
     
     protected $namespaces = array();
     
-    public static getInstance() {
+    public static function getInstance() {
         if (null == self::instance) {
-            self::instance = new self();
+            self::$instance = new self();
         }
-        return self::instance;
+        return self::$instance;
     }
     
     protected function __construct() {
@@ -40,11 +41,11 @@ class AutoLoader {
         spl_autoload_register(array($this, 'autoload'));
     }
     
-    public classnameToFilename($class, $dir) {
+    public function classnameToFilename($class, $dir) {
         return $dir.str_replace(self::NAMESPACE_SEPARATOR,DIRECTORY_SEPARATOR,$class).'.php';
     }
     
-    public fileExists($file) {
+    public function fileExists($file) {
         return stream_resolve_include_path($filename);
     }
 
