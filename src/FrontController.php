@@ -36,7 +36,12 @@ class FrontController {
       *  information contained in the Request to determine what package to use.
       */
     protected $router;
-    
+ 
+    /**
+     * Holds the Reponse that will be built/returned back to the requester. 
+     */
+    protected $response;
+ 
     /**
       * Pointer to the package dispatcher. The dispatcher is responsible for
       *  finding the proper package/controller and creating an instance. Then
@@ -57,56 +62,55 @@ class FrontController {
     
     //Just make sure we cant do this... singleton
     private function __clone() {}
-    
-    public function getInstance() {
-        if (null == self::$instance) {
+   
+    /**
+     * @edit Jonathon Hibbard
+     * Updated to be a static and changed check from null to !isset
+     */ 
+    public static function getInstance() {
+        if (!isset(self::$instance)) {
             self::$instance == new self();
         }
         return self::$instance;
     }
-    
-    public function setPackageDir($path) {
-        $this->packageDir = $path;
+
+    public function __set($key, $value) {
+      $this->$key = $value;
     }
-    
-    public function getPackageDir() {
-        return $this->packageDir;
+
+    public function __get($key) {
+      return $this->$key;
     }
-    
-    public function setRouter($router) {
-        $this->router = $router;
-    }
-    
-    public function getRouter() {
-        return $this->router;
-    }
-    
-    public function setDispatcher($dispatcher) {
-        $this->dispatcher = $dispatcher;
-    }
-    
-    public function getDispatcher() {
-        return $this->dispatcher;
-    }
-    
-    //Used to startup the server.
-    public static function run($path) {
+
+    /**
+     * @author James Phillips
+     * Used to startup the server.
+     *
+     * @edit Jonathon Hibbard
+     * changed all set methods to instead directly set the local object's variable to the value.
+     * changed the default value of path to be null by default.
+     */
+    public static function run($path = null) {
         $front = self::getInstance();
-        $front->setResponse(new Request\HTTP());
-        $front->setRouter(new Router\Rewrite());
-        $front->setDispatcher(new Dispatcher\Package());
-        if (null !== $path) $front->setPackageDir($path); 
+        $front->response = new Request\HTTP();
+        $front->router = new Router\Rewrite();
+        $front->dispatcher = new Dispatcher\Package();
+        if (isset($path)) $front->packageDir = $path; 
     }
-    
-    //Takes a request, if null will create the default request using the HTTP info
-    //Returns a response
+   
+    /**
+     * @author James Phillips
+     * Takes a request, if null will create the default request using the HTTP info
+     * Changed default value of request to be null.  Changed check to see if it is set or not instead of explicit null check.
+     * @return unknown $response // Returns the response.
+     */ 
     public function execute($request) {
         //make sure we have a request of some kind. The request object 
         //is capable of loading all the HTTP stuff on its own, so generally,
         //you wouldn't send one in. Only send one in if you're doing something
         //more to it (or creating your own request object thats not from a
         //web user)
-        if (null === $request) { 
+        if (isset($request)) { 
             $request = new Request\HTTP();
         }
 
