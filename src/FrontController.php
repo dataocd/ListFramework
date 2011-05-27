@@ -74,10 +74,20 @@ class FrontController {
         return self::$instance;
     }
 
+    /**
+     * @author Jonathon Hibbard
+     * Creatied a setter for defining the protected properties.
+     * @todo determine if these vars really need to be protected or if instead they should be private/public...
+     */
     public function __set($key, $value) {
       $this->$key = $value;
     }
 
+    /**
+     * @author Jonathon Hibbard
+     * Created a getter for accessing the protected properties.
+     * @todo @see self::__set
+     */ 
     public function __get($key) {
       return $this->$key;
     }
@@ -101,10 +111,12 @@ class FrontController {
     /**
      * @author James Phillips
      * Takes a request, if null will create the default request using the HTTP info
-     * Changed default value of request to be null.  Changed check to see if it is set or not instead of explicit null check.
      * @return unknown $response // Returns the response.
+     * 
+     * @edit Jonathon Hibbard
+     * Changed default value of request to be null.  Changed check to see if it is set or not instead of explicit null check.
      */ 
-    public function execute($request) {
+    public function execute($request = null ) {
         //make sure we have a request of some kind. The request object 
         //is capable of loading all the HTTP stuff on its own, so generally,
         //you wouldn't send one in. Only send one in if you're doing something
@@ -117,13 +129,12 @@ class FrontController {
         try {
             //Not sure how I feel about this, should it call the dispatcher. I don't think so
             //  so this updates the package name in the $request.
-            $this->getRouter()->route($request);       
+            $this->router->route($request);       
         
-            $response = $this->getDispatcher()->dispatch($request);
+            $response = $this->dispatcher->dispatch($request);
         } catch (\Exception $e) {
             $response->addException($e);
         }
-        
         
         return $response;
     }
