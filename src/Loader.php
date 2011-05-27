@@ -44,7 +44,7 @@ class Loader {
     public static function loadFile($filename, $dirs = null, $once = false) {
         $incPath = false;
         // if (!empty($dirs) && (is_array($dirs) || is_string($dirs))) {
-        if(isset($dirs) {
+        if(isset($dirs)) {
             if (is_array($dirs)) {
                 $dirs = implode(PATH_SEPARATOR, $dirs);
             }
