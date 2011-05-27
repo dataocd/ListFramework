@@ -1,10 +1,13 @@
 <?php
-
 namespace Listr;
-
 class AutoLoader {
     const NAMESPACE_SEPARATOR     = '\\';
-    protected $instance;
+
+    /**
+     * @edit Jonathon Hibbard
+     * Updated this property to be static for singleton storage.
+     */
+    protected static $instance;
     
     protected $namespaces = array();
     
@@ -15,6 +18,10 @@ class AutoLoader {
         return self::$instance;
     }
     
+    /**
+     * @edit Jonathon Hibbard
+     * Is this class being extended?  if not, then this should be private instead of protected.
+     */
     protected function __construct() {
         $this->registerNamespace('List', dirname(__DIR__));
     }
@@ -36,19 +43,16 @@ class AutoLoader {
         // using the include path
     }
     
-    public function register()
-    {
+    public function register() {
         spl_autoload_register(array($this, 'autoload'));
     }
     
     public function classnameToFilename($class, $dir) {
-        return $dir.str_replace(self::NAMESPACE_SEPARATOR,DIRECTORY_SEPARATOR,$class).'.php';
+        return $dir . str_replace(self::NAMESPACE_SEPARATOR, DIRECTORY_SEPARATOR, $class) . '.php';
     }
     
     public function fileExists($file) {
         return stream_resolve_include_path($filename);
     }
-
 }
-
 ?>

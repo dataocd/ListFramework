@@ -11,6 +11,15 @@
  * @license   TBD
  * @version   SVN: $Id$
  * @link      http://www.dataocd.com/
+ *
+ * @todo This controller should implement the IController interface.
+ *       However, I don't really want to do it yet as I would have to supply the full-path to the IController.
+ *       Instead, we should have an autoloader that is loaded by default whenever we begin the initial load of 
+ *       the list proceedures.  We can achieve this with the auto_prepend option in the php.ini file.  However,
+ *       I'm not sold that we should do this.  Instead, we probably want to create the initial autloading from the
+ *       file that is listed as our initial request file (/api/rest/request.php or whatever) and have it just create
+ *       our initial autoload there via the Autoload class.
+ *       -Jonathon Hibbard
  */
 
 namespace Listr;
@@ -57,6 +66,10 @@ class FrontController {
     protected static $instance = null;
    
     protected function __construct() {
+        /**
+         * @edit Jonathon Hibbard
+         * What is the purpose of the package broker?
+         */
         $this->$packages = new Package\Broker();
     }
     
@@ -101,6 +114,11 @@ class FrontController {
      * changed the default value of path to be null by default.
      */
     public static function run($path = null) {
+        /** 
+         * @edit Jonathon Hibbard
+         * I assume these vars are going to be used elsewhere? Maybe in an object that is creating an instance of the FrontendController?
+         * If not, why are we setting this up.  I realize the purpose of the instances, but the purpose of storing them in this object is not clear.
+         */
         $front = self::getInstance();
         $front->response = new Request\HTTP();
         $front->router = new Router\Rewrite();
@@ -135,7 +153,12 @@ class FrontController {
         } catch (\Exception $e) {
             $response->addException($e);
         }
-        
+
+        /**
+         * @edit Jonathon Hibbard
+         * So, we have a local $response proeprty with this FrontController object, and we also have another method-scope variable for response?
+         * Shouldn't we be storing the responses to the local self::$response var and not returning it, or should we return it... etc.
+         */        
         return $response;
     }
 }

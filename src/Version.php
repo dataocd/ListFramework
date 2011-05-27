@@ -29,8 +29,7 @@ namespace Listr;
  * @copyright  2011 DataOCD. All rights reserved.
  * @license    TBD
  */
-final class Version
-{
+final class Version {
     const VERSION = '0.1.0';
 
     public static function isVersion($version) {

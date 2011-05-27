@@ -41,9 +41,20 @@ namespace Listr\Request;
     public function getRequestURL() {
         return $this->requestURL;
     }
-    
-    //Universal get function. This way, noone else outside of here ever,
-    //  need mess with the ugly server globals stuff.
+   
+    /**
+     * @author James Phillips
+     * Universal get function. This way, noone else outside of here ever,
+     * need mess with the ugly server globals stuff.
+     *
+     * @edit Jonathon Hibbard
+     * That's all good and great, but when the same key name exists in different 
+     * locations (object attributes property, or any of the superglobals) you now
+     * are essentially grabbing the very first one you find.  This can be an issue
+     * when the keys may be the same name, but hold completely different values.
+     * Not sure this method can exist as it is.  May want to rewrite this to be just a 
+     * getter instead, or remove the superglobals from the method completely.
+     */
     public function get($key) {
         switch (true) {
             case isset($this->attributes[$key]):

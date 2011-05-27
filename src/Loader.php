@@ -41,13 +41,14 @@ class Loader {
      * @param  boolean       $once
      * @return boolean
      */
-    public static function loadFile($filename, $dirs = null, $once = false)
-    {
+    public static function loadFile($filename, $dirs = null, $once = false) {
         $incPath = false;
-        if (!empty($dirs) && (is_array($dirs) || is_string($dirs))) {
+        // if (!empty($dirs) && (is_array($dirs) || is_string($dirs))) {
+        if(isset($dirs) {
             if (is_array($dirs)) {
                 $dirs = implode(PATH_SEPARATOR, $dirs);
             }
+
             $incPath = get_include_path();
             set_include_path($dirs . PATH_SEPARATOR . $incPath);
         }
@@ -66,8 +67,7 @@ class Loader {
         return true;
     }
 
-    public static function isReadable($filename)
-    {
+    public static function isReadable($filename) {
         foreach (self::explodeIncludePath() as $path) {
             $file = ($path !== '.') ? $path.'/'.$filename : $filename;
             if (is_readable($file)) {
@@ -78,9 +78,8 @@ class Loader {
     }
 
     //Pulled from inet. Inside Zend framework
-    public static function explodeIncludePath($path = null)
-    {
-        if (null === $path) {
+    public static function explodeIncludePath($path = null) {
+        if (!isset($path)) {
             $path = get_include_path();
         }
 
