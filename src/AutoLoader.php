@@ -43,14 +43,11 @@ class AutoLoader {
      */
     public function loadClass($class) {
       $namespace = strstr($class, '\\', true);
-      // Replaced str_replace with preg_replace
+      // Jon: Replaced str_replace with preg_replace
       $classPeeled = preg_replace("/$namespace/", "", $class, 1);
-      $this->classnameToFilename($classPeeled, $this->namespaces[$namespace]);
+
+      $filename = $this->classnameToFilename($classPeeled, $this->namespaces[$namespace]);
       \Lists\Loader::loadFile($filename);
-      
-        //need to peel off the first part(s) and see if they are in our namespaces,
-        // if so, thats the path your start from. If all else fails, try to load it
-        // using the include path
     }
     
     public function register() {
