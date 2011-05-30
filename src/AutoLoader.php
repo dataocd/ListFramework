@@ -1,5 +1,5 @@
 <?php
-namespace Listr;
+namespace Lists;
 class AutoLoader {
     const NAMESPACE_SEPARATOR     = '\\';
 
@@ -12,7 +12,7 @@ class AutoLoader {
     protected $namespaces = array();
     
     public static function getInstance() {
-        if (null == self::instance) {
+        if (null == self::$instance) {
             self::$instance = new self();
         }
         return self::$instance;
