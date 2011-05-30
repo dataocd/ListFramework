@@ -8,5 +8,8 @@ namespace Listr\Router;
   *  $Response object.
   */
 interface IRouter {
-    public function route($request, $dispatcher);
+    public function route($request, $dispatcher) {
+        // Parse the Reqeust and determine which controller to pull
+        // Call the dispatcher with the updated request object values.
+    }
 }
