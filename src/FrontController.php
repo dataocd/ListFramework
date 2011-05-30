@@ -66,8 +66,10 @@ class FrontController {
      */ 
     public static function getInstance() {
         if (!isset(self::$instance)) {
+            echo "Getting new FC <BR>";
             self::$instance == new self();
         }
+        echo "Returning FC<BR>";
         return self::$instance;
     }
 
@@ -103,7 +105,7 @@ class FrontController {
          * I assume these vars are going to be used elsewhere? Maybe in an object that is creating an instance of the FrontendController?
          * If not, why are we setting this up.  I realize the purpose of the instances, but the purpose of storing them in this object is not clear.
          */
-        $front = self::getInstance();
+        $front = \Lists\FrontController::getInstance();
 //        $front->request   = new Request\HTTP();
         $front->router     = new Router\Rewrite();
         $front->dispatcher = new Dispatcher();
