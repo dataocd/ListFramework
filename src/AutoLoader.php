@@ -34,6 +34,9 @@ class AutoLoader {
     }
     
     public function loadClass($class) {
+      $namespace = strstr("\\", $class, true);
+      $this->classnameToFilename(str_replace($namespace, "", $class), $this->namespaces[$namespace]);
+      
         //need to peel off the first part(s) and see if they are in our namespaces,
         // if so, thats the path your start from. If all else fails, try to load it
         // using the include path
