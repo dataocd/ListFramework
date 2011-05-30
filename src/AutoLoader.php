@@ -34,6 +34,7 @@ class AutoLoader {
     }
 
     /**
+     * @author Jonathon Hibbard
      * Parses out the namespace, obtains the dir from the namespaces array, and then calls the classnameToFilename to get the dir.
      *
      * @param string $class
