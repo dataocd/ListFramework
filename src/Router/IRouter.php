@@ -8,5 +8,5 @@ namespace Lists\Router;
   *  $Response object.
   */
 interface IRouter {
-    public function route(Request $request);
+    public function route(\Lists\Request\Request $request);
 }

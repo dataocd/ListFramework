@@ -17,7 +17,7 @@
  /**
  * @namespace
  */
-namespace Lists;
+namespace Lists\Controller;
 
 /**
  * @category  Interface

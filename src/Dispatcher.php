@@ -18,9 +18,9 @@ namespace Lists;
 
 class Dispatcher {
    //This class should create the package->controller and call the execute function
-   public function execute(Request $request) {
-       $controller_string = implode("\\", array($request->package, 'Controllers', $request->pageController));
+   public function execute(Request\Request $request) {
+       $controller_string = implode("\\", array($request->package, 'Controller', $request->packageController));
        $controller = new $controller_string();
-       return $controller->execute();
+       return $controller->execute($request);
    }
 }

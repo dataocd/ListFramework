@@ -41,6 +41,10 @@ namespace Lists\Request;
         //Need to grab the url here
         //  need to load the put/post and querystrings into the attributes array
         //  need to set the type
+        
+        if (NULL == $url) {
+            $url = $this->get('REQUEST_URI');
+        }
         $this->URLParts = parse_url($url);
     }
     public function getRequestURL() {

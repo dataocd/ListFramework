@@ -109,7 +109,7 @@ class FrontController {
         $front->router     = new Router\Rewrite();
         $front->dispatcher = new Dispatcher();
         $front->execute();
-        echo $front;
+        //echo $front;
     }
 
     /**
@@ -128,7 +128,7 @@ class FrontController {
         //web user)
 
         if(!isset($request)) { 
-            $request = new Request\HTTP();
+            $request = new Request\HTTP('/REST/v1/TEST/ANYTHING/');
         }
 
         try {
