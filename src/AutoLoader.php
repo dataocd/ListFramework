@@ -43,8 +43,8 @@ class AutoLoader {
      */
     public function loadClass($class) {
       $namespace = strstr($class, '\\', true);
-      //$class_name = str_replace($namespace, '', $class);
-      $classPeeled = str_replace($namespace, "", $class);
+      // Replaced str_replace with preg_replace
+      $classPeeled = preg_replace("/$namespace/", "", $class, 1);
       $this->classnameToFilename($classPeeled, $this->namespaces[$namespace]);
       \Lists\Loader::loadFile($filename);
       
