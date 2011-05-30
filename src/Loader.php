@@ -20,7 +20,7 @@
 /**
  * @namespace
  */
-namespace Listr;
+namespace Lists;
 
 /**
  * @category  Core

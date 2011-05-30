@@ -22,7 +22,7 @@
  *       -Jonathon Hibbard
  */
 
-namespace Listr;
+namespace Lists;
 /**
  * @category  Core
  * @package   Loader

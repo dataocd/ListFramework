@@ -1,5 +1,7 @@
 <?php
 namespace Lists;
+include('Loader.php');
+
 class AutoLoader {
     const NAMESPACE_SEPARATOR     = '\\';
 
@@ -19,7 +21,7 @@ class AutoLoader {
     }
     
     protected function __construct() {
-        $this->registerNamespace('Lists', dirname(__DIR__));
+        $this->registerNamespace('Lists', __DIR__);
     }
     
     public function registerNamespace($namespace, $dir) {
@@ -34,8 +36,10 @@ class AutoLoader {
     }
     
     public function loadClass($class) {
-      $namespace = strstr("\\", $class, true);
-      $this->classnameToFilename(str_replace($namespace, "", $class), $this->namespaces[$namespace]);
+      $namespace = strstr($class, '\\', true);
+      $class_name = str_replace($namespace, '', $class);
+      $filename = $this->classnameToFilename(str_replace($namespace, '', $class), $this->namespaces[$namespace]);
+      \Lists\Loader::loadFile($filename);
       
         //need to peel off the first part(s) and see if they are in our namespaces,
         // if so, thats the path your start from. If all else fails, try to load it
@@ -47,7 +51,8 @@ class AutoLoader {
     }
     
     public function classnameToFilename($class, $dir) {
-        return $dir . str_replace(self::NAMESPACE_SEPARATOR, DIRECTORY_SEPARATOR, $class) . '.php';
+        $output = $dir . str_replace(self::NAMESPACE_SEPARATOR, DIRECTORY_SEPARATOR, $class) . '.php';
+        return $output;
     }
     
     public function fileExists($file) {
