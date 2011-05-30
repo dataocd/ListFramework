@@ -16,7 +16,7 @@
 /**
  * @namespace
  */
-namespace Listr\Request;
+namespace Lists\Request;
 
 /**
  * @category  Requests

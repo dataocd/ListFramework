@@ -37,7 +37,7 @@ namespace Lists\Request;
     private $baseURL;
     private $attributes;
     
-    public function __construct($URL = NULL) {
+    public function __construct($url = NULL) {
         //Need to grab the url here
         //  need to load the put/post and querystrings into the attributes array
         //  need to set the type
