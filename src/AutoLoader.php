@@ -41,8 +41,7 @@ class AutoLoader {
      */
     public function loadClass($class) {
         $namespace = strstr("\\", $class, true);
-        $classPeeled = str_replace($namespace, "", $class);
-        echo "<br />Class Peeled == $classPeeled<br />";
+        $classPeeled = str_replace($namespace, "", $class, 1);
         $this->classnameToFilename($classPeeled, $this->namespaces[$namespace]);
     }
 
