@@ -1,5 +1,7 @@
 ListFramework Test
 ======================
+![design!](https://github.com/dataocd/ListFramework/raw/master/docs/lists_flow.png)
+
 This is just an example of the readme markdown format. I guess there are several types it can read.
 
 <pre>
