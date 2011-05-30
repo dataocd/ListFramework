@@ -45,7 +45,7 @@ class AutoLoader {
       $namespace = strstr($class, '\\', true);
       //$class_name = str_replace($namespace, '', $class);
       $classPeeled = str_replace($namespace, "", $class);
-      $this->classnameToFilename($classPeeled, $this->namespaces[$namespace]);
+      $filename = $this->classnameToFilename($classPeeled, $this->namespaces[$namespace]);
       \Lists\Loader::loadFile($filename);
       
         //need to peel off the first part(s) and see if they are in our namespaces,
