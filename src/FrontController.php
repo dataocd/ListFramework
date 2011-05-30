@@ -29,27 +29,15 @@ namespace Lists;
  */
 class FrontController {
     /**
-      * Directories where packages are stored
-      * @var string|array
-      */
-    protected $packageDir = null;
-    
-    /**
-      * Subdir in the package where we start looking for controllers, default is 'controllers'
-      * @var string
-      */
-    protected $packageControllerDir = 'controllers';    
-    
-    /**
       * The package router used to find and load the packages. Parses the 
-      *  information contained in the Request to determine what package to use.
+      * information contained in the Request to determine what package to use.
       */
     protected $router;
  
     /**
      * Holds the Reponse that will be built/returned back to the requester. 
      */
-    protected $response;
+//    protected $response;
  
     /**
       * Pointer to the package dispatcher. The dispatcher is responsible for
@@ -64,14 +52,10 @@ class FrontController {
       * @var \List\Controller\FrontController
       */
     protected static $instance = null;
-   
-    protected function __construct() {
-        /**
-         * @edit Jonathon Hibbard
-         * What is the purpose of the package broker?
-         */
-        $this->$packages = new Package\Broker();
-    }
+/*
+    protected $request = null;
+*/
+    private function __construct() {}
     
     //Just make sure we cant do this... singleton
     private function __clone() {}
@@ -113,19 +97,19 @@ class FrontController {
      * changed all set methods to instead directly set the local object's variable to the value.
      * changed the default value of path to be null by default.
      */
-    public static function run($path = null) {
+    public static function run() {
         /** 
          * @edit Jonathon Hibbard
          * I assume these vars are going to be used elsewhere? Maybe in an object that is creating an instance of the FrontendController?
          * If not, why are we setting this up.  I realize the purpose of the instances, but the purpose of storing them in this object is not clear.
          */
         $front = self::getInstance();
-        $front->response = new Request\HTTP();
-        $front->router = new Router\Rewrite();
+//        $front->request   = new Request\HTTP();
+        $front->router     = new Router\Rewrite();
         $front->dispatcher = new Dispatcher\Package();
-        if (isset($path)) $front->packageDir = $path; 
+        $front->execute();
     }
-   
+
     /**
      * @author James Phillips
      * Takes a request, if null will create the default request using the HTTP info
@@ -134,22 +118,24 @@ class FrontController {
      * @edit Jonathon Hibbard
      * Changed default value of request to be null.  Changed check to see if it is set or not instead of explicit null check.
      */ 
-    public function execute($request = null ) {
+    public function execute($request = null) {
         //make sure we have a request of some kind. The request object 
         //is capable of loading all the HTTP stuff on its own, so generally,
         //you wouldn't send one in. Only send one in if you're doing something
         //more to it (or creating your own request object thats not from a
         //web user)
-        if (isset($request)) { 
+
+        if(!isset($request)) { 
             $request = new Request\HTTP();
         }
 
         try {
-            //Not sure how I feel about this, should it call the dispatcher. I don't think so
-            //  so this updates the package name in the $request.
-            $this->router->route($request);       
-        
-            $response = $this->dispatcher->dispatch($request);
+            // Not sure how I feel about this, should it call the dispatcher. I don't think so
+            // so this updates the package name in the $request.
+            $response = $this->router->route($request);       
+
+            // This gets moved into the router.
+//            $response = $this->dispatcher->dispatch($request);
         } catch (\Exception $e) {
             $response->addException($e);
         }
@@ -162,3 +148,4 @@ class FrontController {
         return $response;
     }
 }
+?>
