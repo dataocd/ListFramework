@@ -17,7 +17,7 @@
  /**
  * @namespace
  */
-namespace Listr;
+namespace Lists;
 
 /**
  * @category  Interface
@@ -25,5 +25,5 @@ namespace Listr;
  */
  
 interface IController {
-    public function execute($Request);
+    public function execute($request);
 }

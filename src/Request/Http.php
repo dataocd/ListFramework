@@ -26,8 +26,13 @@ namespace Listr\Request;
     private $validMethodTypes = array('DELETE','GET','HEAD','OPTIONS','POST','PUT');
     private $isHttps = false;
     private $requestURL;
+
+    private $package;
+    private $packageController;
+
     private $URLParts;
     private $type;
+    
     private $basePath;
     private $baseURL;
     private $attributes;
@@ -36,12 +41,20 @@ namespace Listr\Request;
         //Need to grab the url here
         //  need to load the put/post and querystrings into the attributes array
         //  need to set the type
-        $parts = parse_url($url);
+        $this->URLParts = parse_url($url);
     }
     public function getRequestURL() {
         return $this->requestURL;
     }
-   
+
+    public function __get($key) {
+        return $this->$key;
+    }
+
+    public function __set($key, $value) {
+        $this->$key = $value;
+    }
+
     /**
      * @author James Phillips
      * Universal get function. This way, noone else outside of here ever,

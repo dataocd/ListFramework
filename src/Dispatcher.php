@@ -18,4 +18,9 @@ namespace Listr;
 
 class Dispatcher {
    //This class should create the package->controller and call the execute function
+   public function execute(Request $request) {
+       $controller_string = implode("\\", array($request->package, $request->pageController));
+       $controller = new $controller_string();
+       return $controller->execute();
+   }
 }
