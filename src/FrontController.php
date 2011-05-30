@@ -106,7 +106,7 @@ class FrontController {
         $front = self::getInstance();
 //        $front->request   = new Request\HTTP();
         $front->router     = new Router\Rewrite();
-        $front->dispatcher = new Dispatcher\Package();
+        $front->dispatcher = new Dispatcher();
         $front->execute();
     }
 

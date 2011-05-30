@@ -1,5 +1,5 @@
 <?php
-namespace Listr\Router;
+namespace Lists\Router;
 
 /**
   * Processes the information in the $Request to determine what package
@@ -8,8 +8,5 @@ namespace Listr\Router;
   *  $Response object.
   */
 interface IRouter {
-    public function route($request, $dispatcher) {
-        // Parse the Reqeust and determine which controller to pull
-        // Call the dispatcher with the updated request object values.
-    }
+    public function route(Request $request);
 }

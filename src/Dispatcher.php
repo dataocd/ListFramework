@@ -14,12 +14,12 @@
  * @link      http://www.dataocd.com/
  */
 
-namespace Listr;
+namespace Lists;
 
 class Dispatcher {
    //This class should create the package->controller and call the execute function
    public function execute(Request $request) {
-       $controller_string = implode("\\", array($request->package, $request->pageController));
+       $controller_string = implode("\\", array($request->package, 'Controllers', $request->pageController));
        $controller = new $controller_string();
        return $controller->execute();
    }
