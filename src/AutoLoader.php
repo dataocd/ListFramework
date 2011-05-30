@@ -18,12 +18,8 @@ class AutoLoader {
         return self::$instance;
     }
     
-    /**
-     * @edit Jonathon Hibbard
-     * Is this class being extended?  if not, then this should be private instead of protected.
-     */
     protected function __construct() {
-        $this->registerNamespace('List', dirname(__DIR__));
+        $this->registerNamespace('Lists', dirname(__DIR__));
     }
     
     public function registerNamespace($namespace, $dir) {
