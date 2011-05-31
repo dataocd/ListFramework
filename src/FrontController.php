@@ -128,7 +128,7 @@ class FrontController {
         //web user)
 
         if(!isset($request)) { 
-            $request = new Request\HTTP('/REST/v1/TEST/ANYTHING/');
+            $request = new Request\Http('/REST/v1/TEST/ANYTHING/');
         }
 
         try {
