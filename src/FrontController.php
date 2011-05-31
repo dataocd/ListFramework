@@ -47,6 +47,8 @@ class FrontController {
       */
     protected $dispatcher = null;
     
+    protected $base_uri = null;
+    
     /**
       * We only want one of these guys.
       * @var \List\Controller\FrontController
@@ -97,7 +99,7 @@ class FrontController {
      * changed all set methods to instead directly set the local object's variable to the value.
      * changed the default value of path to be null by default.
      */
-    public static function run() {
+    public static function run($base_uri = NULL) {
         /** 
          * @edit Jonathon Hibbard
          * I assume these vars are going to be used elsewhere? Maybe in an object that is creating an instance of the FrontendController?
@@ -105,7 +107,7 @@ class FrontController {
          */
 
         $front = \Lists\FrontController::getInstance();
-//        $front->request   = new Request\HTTP();
+        $front->base_uri   = $base_uri;
         $front->router     = new Router\Rewrite();
         $front->dispatcher = new Dispatcher();
         $front->execute();
@@ -121,32 +123,17 @@ class FrontController {
      * Changed default value of request to be null.  Changed check to see if it is set or not instead of explicit null check.
      */ 
     public function execute($request = null) {
-        //make sure we have a request of some kind. The request object 
-        //is capable of loading all the HTTP stuff on its own, so generally,
-        //you wouldn't send one in. Only send one in if you're doing something
-        //more to it (or creating your own request object thats not from a
-        //web user)
 
         if(!isset($request)) { 
-            $request = new Request\Http('/REST/v1/TEST/ANYTHING/');
+            $request = new Request\Http();
         }
 
         try {
-            // Not sure how I feel about this, should it call the dispatcher. I don't think so
-            // so this updates the package name in the $request.
             $response = $this->router->route($request);       
-
-            // This gets moved into the router.
-//            $response = $this->dispatcher->dispatch($request);
         } catch (\Exception $e) {
             $response->addException($e);
         }
 
-        /**
-         * @edit Jonathon Hibbard
-         * So, we have a local $response proeprty with this FrontController object, and we also have another method-scope variable for response?
-         * Shouldn't we be storing the responses to the local self::$response var and not returning it, or should we return it... etc.
-         */        
         return $response;
     }
 }
