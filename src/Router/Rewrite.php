@@ -9,6 +9,7 @@ class Rewrite implements IRouter {
         $paths = explode("/", $uri);
         $request->package = $paths[1];
         $request->packageController = $paths[2];
+        $request->packageCommand = str_replace($paths[1].'/'.$paths[2].'/','',$uri);
         return $FC->dispatcher->execute($request);
     }
 }

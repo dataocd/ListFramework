@@ -29,6 +29,7 @@ namespace Lists\Request;
 
     private $package;
     private $packageController;
+    private $packageCommand;
 
     private $URLParts;
     private $type;
