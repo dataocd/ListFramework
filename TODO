@@ -1,9 +1,0 @@
-* Figure out a way to publish builds. ezPublish?
-* Look into deploy scripts for the publisher. Maybe package our php into pear packages?
-* Come up with a good way to do diagrams. http://www.diagram.ly/ ?
-* Look into online whiteboard services so we can collaborate.
-* Come up with a name
-* Diagram the system
-* Diagram the classes
-
-* Add the concept of a default package/controller/route
