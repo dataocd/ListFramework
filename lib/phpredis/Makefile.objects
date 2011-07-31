@@ -1,0 +1,18 @@
+redis.lo: /home/infolock/dataocd/Lists/ListFramework/lib/phpredis/redis.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/infolock/dataocd/Lists/ListFramework/lib/phpredis $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/infolock/dataocd/Lists/ListFramework/lib/phpredis/redis.c -o redis.lo 
+library.lo: /home/infolock/dataocd/Lists/ListFramework/lib/phpredis/library.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/infolock/dataocd/Lists/ListFramework/lib/phpredis $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/infolock/dataocd/Lists/ListFramework/lib/phpredis/library.c -o library.lo 
+redis_session.lo: /home/infolock/dataocd/Lists/ListFramework/lib/phpredis/redis_session.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/infolock/dataocd/Lists/ListFramework/lib/phpredis $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/infolock/dataocd/Lists/ListFramework/lib/phpredis/redis_session.c -o redis_session.lo 
+igbinary/igbinary.lo: /home/infolock/dataocd/Lists/ListFramework/lib/phpredis/igbinary/igbinary.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/infolock/dataocd/Lists/ListFramework/lib/phpredis $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/infolock/dataocd/Lists/ListFramework/lib/phpredis/igbinary/igbinary.c -o igbinary/igbinary.lo 
+igbinary/hash_si.lo: /home/infolock/dataocd/Lists/ListFramework/lib/phpredis/igbinary/hash_si.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/infolock/dataocd/Lists/ListFramework/lib/phpredis $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/infolock/dataocd/Lists/ListFramework/lib/phpredis/igbinary/hash_si.c -o igbinary/hash_si.lo 
+igbinary/hash_function.lo: /home/infolock/dataocd/Lists/ListFramework/lib/phpredis/igbinary/hash_function.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/infolock/dataocd/Lists/ListFramework/lib/phpredis $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/infolock/dataocd/Lists/ListFramework/lib/phpredis/igbinary/hash_function.c -o igbinary/hash_function.lo 
+$(phplibdir)/redis.la: ./redis.la
+	$(LIBTOOL) --mode=install cp ./redis.la $(phplibdir)
+
+./redis.la: $(shared_objects_redis) $(REDIS_SHARED_DEPENDENCIES)
+	$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_redis) $(REDIS_SHARED_LIBADD)
+
