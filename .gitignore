@@ -1,3 +1,7 @@
 Build/*
 Builds/*
 .DS_Store
+output_data
+docs
+output_data/*
+docs/*
