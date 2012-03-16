@@ -1,0 +1,6 @@
+<?php
+namespace Core\REST\Router;
+interface iRouter {
+  public function addRoute($route, \Core\REST\Dispatcher $dispatcher);
+  public function route(\Core\REST\Request\Request $request);
+}
