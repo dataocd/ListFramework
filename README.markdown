@@ -2,7 +2,7 @@
 
 This README will be updated from time to time as neww features as added/removed.
 
-Please note that this framework is released under the GNU General Public License, 
+Please note that this framework is released under the TBD, 
 although this could change as our requirements/needs change, and/or DataOCD feels the 
 license limits/abuses the usage of this Framework.  See the LICENSE document for more information.
 
