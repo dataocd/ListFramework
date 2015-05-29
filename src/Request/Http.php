@@ -3,59 +3,46 @@
  * @author Jonathon Hibbard
  * Based on https://github.com/dataocd/ListFramework/blob/master/src/Request/Http.php
  */
-namespace AVBC;
+namespace NS_HERE;
 
 class Request {
-    private $variables_order  = array( 'E', 'G', 'P', 'C', 'S' );
+    private static $variables_order  = array( 'E', 'G', 'P', 'C', 'S' );
 
-    private static $instance = null;
-
-    // Prevent Clone... Singleton...
-    private function __clone() {}
-
-    private function __construct( $variables_order ) {
+    public static function setVariablesOrder( $variables_order = 'EGPCS' ) {
         if( !is_string( $variables_order ) || empty( $variables_order ) ) {
             $variables_order = strtoupper( ini_get( 'variables_order' ) );
         }
 
-        $this->variables_order = str_split( $variables_order );
+        self::$variables_order = str_split( $variables_order );
     }
 
-    private function E() {
+    private static function E() {
         return $_ENV;
     }
 
-    private function G() {
+    private static function G() {
         return $_GET;
     }
 
-    private function P() {
+    private static function P() {
         return $_POST;
     }
 
-    private function C() {
+    private static function C() {
         return $_COOKIE;
     }
 
-    private function S() {
+    private static function S() {
         return $_SERVER;
     }
 
-    public static function getInstance( $variables_order = 'EGPCS' ) {
-        if( !isset( self::$instance ) ) {
-            self::$instance = new Request( $variables_order );
-        }
-
-        return self::$instance;
-    }
-
-    public function valueForKey( $key ) {
+    public static function valueForKey( $key ) {
         if( !is_string( $key ) || empty( $key ) ) {
             return null;
         }
 
-        foreach( $this->variables_order as $prop_type ) {
-            $_prop = $this->$prop_type();
+        foreach( self::$variables_order as $prop_type ) {
+            $_prop = self::$prop_type();
 
             if( isset( $_prop[$key] ) ) {
                 return $_prop[$key];
